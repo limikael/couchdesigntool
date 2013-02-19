@@ -32,7 +32,7 @@ it can optionally store the resulting document in a CouchDB database.
 Example
 =======
 
-So, let's consider an example JSON template:
+So, let's consider an example JSON template (<b>template.json</b>):
 <pre>
 {
     "id": "_design/mydesigndoc",
@@ -51,7 +51,7 @@ So, let's consider an example JSON template:
 }
 </pre>
 
-And then its corresponding jacascript file:
+And then its corresponding jacascript file (<b>snippets.js</b>):
 <pre>
 /* @get_score_data_map */
 function(doc) {

@@ -11,7 +11,9 @@ The only thing you need is the latest .phar file, just download it and put it in
 Purpose and usage
 =================
 
-If you have managed a CouchDB design document, you know that the java script code for your views and filters etc. resides inside javascript strings. This makes the code amazingly ugly and hard to maintain. For example, it might look like this:
+If you have managed a CouchDB design document, you know that the java script code for your views and filters etc. 
+resides inside javascript strings. This makes the code amazingly ugly and hard to maintain.
+For example, it might look like this:
 <pre>
 "views": {
     "get_score_data": {
@@ -21,5 +23,9 @@ If you have managed a CouchDB design document, you know that the java script cod
             emit([doc.score_id,3], doc);\n\n if (doc.type==\"trackrecording\")\n 
             emit([doc.score_id,3], doc);  if (doc.type==\"trackeffect\")\n 
             emit([doc.score_id,4], doc);\n\n}"
-    },
+    }
 </pre>
+
+Not pretty. To address this problem, this tool uses a template JSON file as well as one or more javascript files
+containing the code for your functions. It then replaces the certain hooks in the JSON file with that code, and
+it can optionally store the resulting document in a CouchDB database.

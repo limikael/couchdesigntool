@@ -35,7 +35,7 @@ Example
 So, let's consider an example JSON template (<b>template.json</b>):
 <pre>
 {
-    "id": "_design/mydesigndoc",
+	"id": "_design/mydesigndoc",
 	"language": "javascript",
 
 	"views": {
@@ -43,33 +43,43 @@ So, let's consider an example JSON template (<b>template.json</b>):
 			"map": "@get_score_data_map"
 		},
 
-      "get_user_disk_usage": {
-           "map": "@get_user_disk_usage_map",
-           "reduce": "@get_user_disk_usage_reduce"
-       }
+		"get_user_disk_usage": {
+			"map": "@get_user_disk_usage_map",
+			"reduce": "@get_user_disk_usage_reduce"
+		}
 	}
 }
 </pre>
 
-And then its corresponding jacascript file (<b>snippets.js</b>):
+And its corresponding javascript file (<b>snippets.js</b>):
 <pre>
 /* @get_score_data_map */
 function(doc) {
-  if (doc.type=="score")
-    emit([doc._id,0], doc);
+	if (doc.type=="score")
+		emit([doc._id,0], doc);
 
-  if (doc.type=="track")
-    emit([doc.score_id,1], doc);
+	if (doc.type=="track")
+		emit([doc.score_id,1], doc);
 }
 
 /* @get_user_disk_usage_map */
 function(doc) {
-  if (doc.type=="asset" || doc.type=="recording")
-    emit(parseInt(doc.user_id), doc.filesize);
+	if (doc.type=="asset" || doc.type=="recording")
+		emit(parseInt(doc.user_id), doc.filesize);
 }
 
 /* @get_user_disk_usage_reduce */
 function (key, values, rereduce) {
-    return sum(values);
+	return sum(values);
 }
 </pre>
+
+We can run the following command:
+<pre>
+    couchdesigntool template.json snippets.js
+</pre>
+To get a resulting document ready to be stored in our database. As you might guess, the replacement procedure
+works simply by identifying strings starting with @ in the template, such as @get_score_data_map, and looking
+up the corresponding comment in the javascript file and replacing the original string with the content from the file.
+The reason why javascript comments are used is so that the file will be a proper javascript file, for the
+purpose of syntax highlighting and such.

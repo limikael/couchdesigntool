@@ -60,18 +60,6 @@ function(doc) {
 
   if (doc.type=="track")
     emit([doc.score_id,1], doc);
-
-  if (doc.type=="recording")
-    emit([doc.score_id,2], doc);
-
-  if (doc.type=="trackasset")
-    emit([doc.score_id,3], doc);
-
-  if (doc.type=="trackrecording")
-    emit([doc.score_id,3], doc);
-
-  if (doc.type=="trackeffect")
-    emit([doc.score_id,4], doc);
 }
 
 /* @get_user_disk_usage_map */

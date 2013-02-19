@@ -12,7 +12,7 @@ Assuming that you have PHP with curl extensions installed, the only thing you ne
 Purpose
 =======
 
-If you have managed a CouchDB design document, you know that the java script code for your views and filters etc. 
+If you have managed a CouchDB design document, you know that the javascript code for your views and filters etc. 
 resides inside javascript strings. This makes the code amazingly ugly and hard to maintain.
 For example, it might look like this:
 <pre>

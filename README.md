@@ -87,8 +87,15 @@ purpose of syntax highlighting and such.
 Updating documents
 ==================
 
-We can also automatically update a design document in a database. In this case we use the following:
+We can also automatically update the design document in the database. In this case we use the following:
 <pre>
 couchdesigntool -w http://localhost:5984/test/_design/mydesigndoc template.json snippets.js
 </pre>
+The -w flag will store the doument regardless of weather it exists or not. If you are paranoid or pedantic,
+you can also use -c which will refuse to overwrite an existing document, or -u which requires that the document
+exists.
 
+Conclusion
+==========
+
+You are using CouchDB, relax! Star me! :)

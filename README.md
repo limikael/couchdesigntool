@@ -76,10 +76,19 @@ function (key, values, rereduce) {
 
 We can run the following command:
 <pre>
-    couchdesigntool template.json snippets.js
+couchdesigntool template.json snippets.js
 </pre>
 To get a resulting document ready to be stored in our database. As you might guess, the replacement procedure
 works simply by identifying strings starting with @ in the template, such as @get_score_data_map, and looking
 up the corresponding comment in the javascript file and replacing the original string with the content from the file.
 The reason why javascript comments are used is so that the file will be a proper javascript file, for the
 purpose of syntax highlighting and such.
+
+Updating documents
+==================
+
+We can also automatically update a design document in a database. In this case we use the following:
+<pre>
+couchdesigntool -w http://localhost:5984/test/_design/mydesigndoc template.json snippets.js
+</pre>
+

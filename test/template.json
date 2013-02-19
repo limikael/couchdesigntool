@@ -1,0 +1,15 @@
+{
+	"id": "_design/mydesigndoc",
+	"language": "javascript",
+
+	"views": {
+		"get_score_data": {
+			"map": "@get_score_data_map"
+		},
+
+      "get_user_disk_usage": {
+           "map": "@get_user_disk_usage_map",
+           "reduce": "@get_user_disk_usage_reduce"
+       }
+	}
+}
